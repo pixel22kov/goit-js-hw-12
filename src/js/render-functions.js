@@ -11,6 +11,10 @@ export function hideLoader() {
   loader.classList.add('visually-hidden');
 }
 
+export function hideButton() {
+  moreBtn.style.display = 'none';
+}
+
 export const cleanGallery = () => {
   gallery.innerHTML = '';
 };
