@@ -40,7 +40,7 @@ form.addEventListener('submit', async event => {
   hideButton();
 
   try {
-   page = 1;
+    page = 1;
     const data = await fetchImages(query, page, perPage);
     const images = data.hits;
 
@@ -63,6 +63,7 @@ form.addEventListener('submit', async event => {
     if (totalHits > perPage) {
       showButton();
     }
+
   } catch (error) {
     hideLoader();
 
@@ -73,7 +74,7 @@ form.addEventListener('submit', async event => {
     });
     console.error(error);
   } finally {
-  hideLoader();
+    hideLoader();
   }
 });
 
