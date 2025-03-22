@@ -25,7 +25,7 @@ let query = '';
 form.addEventListener('submit', async event => {
   event.preventDefault();
 
-  const query = input.value.trim();
+  query = input.value.trim();
 
   if (!query) {
     iziToast.warning({
@@ -43,8 +43,6 @@ form.addEventListener('submit', async event => {
     page = 1;
     const data = await fetchImages(query, page, perPage);
     const images = data.hits;
-
-    hideLoader();
 
     if (images.length === 0) {
       iziToast.error({
@@ -65,8 +63,6 @@ form.addEventListener('submit', async event => {
     }
 
   } catch (error) {
-    hideLoader();
-
     iziToast.error({
       message:
         'An error occurred while fetching images. Please try again later.',
@@ -82,20 +78,24 @@ form.addEventListener('submit', async event => {
 moreBtn.addEventListener('click', async () => {
   page += 1;
   showLoader();
+  hideButton();
 
   try {
     const lastPage = Math.ceil(totalHits / perPage); 
 
     const data = await fetchImages(query, page, perPage);
-    hideLoader();
-
     const images = data.hits;
+
     renderImages(images);
 
-    const { height } = document
-      .querySelector('.gallery-item')
-      .getBoundingClientRect();
-    window.scrollBy({ top: height * 2, behavior: 'smooth' });
+    setTimeout(() => {
+      const galleryItem = document.querySelector('.gallery-item');
+      if (galleryItem) {
+        const { height } = galleryItem.getBoundingClientRect();
+        window.scrollBy({ top: height * 2, behavior: 'smooth' });
+      }
+    }, 100);
+
 
     if (page >= lastPage) { 
       hideButton();
@@ -105,12 +105,12 @@ moreBtn.addEventListener('click', async () => {
       });
     }
   } catch (error) {
-    hideLoader();
-
     iziToast.error({
       message: 'An error occurred while loading more images.',
       position: 'topRight',
     });
     console.error(error);
+  } finally {
+    hideLoader();
   }
 });
