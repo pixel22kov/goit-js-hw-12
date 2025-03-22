@@ -3,6 +3,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+const moreBtn = document.querySelector('.more-btn');
 
 export function showLoader() {
   loader.classList.remove('visually-hidden');
@@ -13,6 +14,10 @@ export function hideLoader() {
 
 export function hideButton() {
   moreBtn.style.display = 'none';
+}
+
+export function showButton() {
+  moreBtn.style.display = 'block';
 }
 
 export const cleanGallery = () => {

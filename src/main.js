@@ -8,6 +8,7 @@ import {
   showLoader,
   hideLoader,
   hideButton,
+  showButton,
 } from './js/render-functions.js';
 
 
@@ -59,7 +60,9 @@ form.addEventListener('submit', async event => {
     form.reset();
     totalHits = data.totalHits;
 
-    if (totalHits > perPage) showLoadBtn();
+    if (totalHits > perPage) {
+      showButton();
+    }
   } catch (error) {
     hideLoader();
 
