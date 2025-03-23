@@ -193,6 +193,10 @@ img {
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes rotation {

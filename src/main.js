@@ -11,7 +11,6 @@ import {
   showButton,
 } from './js/render-functions.js';
 
-
 const form = document.querySelector('.form');
 const input = document.querySelector('.form-input');
 const moreBtn = document.querySelector('.more-btn');
@@ -20,7 +19,6 @@ const perPage = 15;
 let page = 1;
 let totalHits = 0;
 let query = '';
-
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
@@ -78,7 +76,6 @@ form.addEventListener('submit', async event => {
 moreBtn.addEventListener('click', async () => {
   page += 1;
   showLoader();
-  hideButton();
 
   try {
     const lastPage = Math.ceil(totalHits / perPage); 
@@ -95,7 +92,6 @@ moreBtn.addEventListener('click', async () => {
         window.scrollBy({ top: height * 2, behavior: 'smooth' });
       }
     }, 100);
-
 
     if (page >= lastPage) { 
       hideButton();

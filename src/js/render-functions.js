@@ -15,7 +15,6 @@ export function hideLoader() {
 export function hideButton() {
   moreBtn.style.display = 'none';
 }
-
 export function showButton() {
   moreBtn.style.display = 'block';
 }
